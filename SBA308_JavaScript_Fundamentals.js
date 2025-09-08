@@ -1,11 +1,11 @@
 // The provided course information.
-const CourseInfo = {
+const CourseInfo = [{
   id: 451,
   name: "Introduction to JavaScript"
-};
+}];
 
 // The provided assignment group.
-const AssignmentGroup = {
+const AssignmentGroup = [{
   id: 12345,
   name: "Fundamentals of JavaScript",
   course_id: 451,
@@ -30,7 +30,7 @@ const AssignmentGroup = {
       points_possible: 500
     }
   ]
-};
+}];
 
 // The provided learner submission data.
 const LearnerSubmissions = [
@@ -76,6 +76,65 @@ const LearnerSubmissions = [
   }
 ];
 
+
+
+function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
+
+    // Store Result
+    const result = [];
+
+    // Check if IDs match
+if (AssignmentGroup[0].course_id === CourseInfo[0].id) {
+
+    // Match assignments with assignments group
+    const assignments = AssignmentGroup[0].assignments;
+
+    // Track each learner
+    const learners = {};
+    
+    //Write Breakdown
+    LearnerSubmissions.forEach(submission => {
+        const submissionMatch = assignments.find(a => a.id === submission.assignment_id);
+        if (submissionMatch) {
+            const id = submission.learner_id;
+            const score = submission.submission.score;
+            const possible = submissionMatch.points_possible;
+
+            if (!learners[id]) {
+                learners[id] = {score: 0, possible: 0};
+            }
+            learners[id].score += score;
+            learners[id].possible += possible;
+        }
+    });
+
+        for (const id in learners) {
+            const totalScore = learners[id].score;
+            const totalPossible = learners[id].possible;
+            const average = totalScore / totalPossible;
+
+            result.push({ id: Number(id), average: average })
+        }
+        }
+
+return result;
+    }
+
+
+
+const result = getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
+
+console.log(result);
+
+/*
+Create a function named getLearnerData() that accepts these values
+ as parameters, in the order listed: (CourseInfo, AssignmentGroup, 
+ [LearnerSubmission]), and returns the formatted result, which should 
+ be an array of objects as described above.
+*/
+
+
+/*
 function getLearnerData(course, ag, submissions) {
   // here, we would process this data to achieve the desired result.
   const result = [
@@ -99,3 +158,15 @@ function getLearnerData(course, ag, submissions) {
 const result = getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
 
 console.log(result);
+*/
+
+
+/*
+LearnerSubmissions.forEach(display);
+
+
+function display(element) {
+
+    console.log(element);
+}
+*/
