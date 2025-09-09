@@ -89,18 +89,22 @@ if (AssignmentGroup[0].course_id === CourseInfo[0].id) {
     // Match assignments with assignments group
     const assignments = AssignmentGroup[0].assignments;
 
-    // Track each learner
+    // Create a container to track each learner
     const learners = {};
     
-    //Write Breakdown
+    // Loop through each submission (object) in LearnerSubmissions
+    // "submission" is now the shortcut name
     LearnerSubmissions.forEach(submission => {
         const submissionMatch = assignments.find(a => a.id === submission.assignment_id);
+    
+    // Add condition "submissionMatch" and const id, score, and possible points to reference arrays to begin calculation
         if (submissionMatch) {
             const id = submission.learner_id;
             const score = submission.submission.score;
             const possible = submissionMatch.points_possible;
-
-            if (!learners[id]) {
+    
+    // Add every learner by using if statement to grab and collect from const declared above
+            if (learners[id] === undefined) {
                 learners[id] = {score: 0, possible: 0};
             }
             learners[id].score += score;
@@ -108,20 +112,21 @@ if (AssignmentGroup[0].course_id === CourseInfo[0].id) {
         }
     });
 
+    // Calculate the average
         for (const id in learners) {
             const totalScore = learners[id].score;
             const totalPossible = learners[id].possible;
             const average = totalScore / totalPossible;
-
-            result.push({ id: Number(id), average: average })
+    
+    // Add the id, and average to result []
+            result.push({ id, average })
         }
         }
 
 return result;
     }
 
-
-
+    // Console.log result
 const result = getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
 
 console.log(result);
