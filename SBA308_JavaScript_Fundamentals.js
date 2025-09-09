@@ -114,10 +114,47 @@ if (AssignmentGroup[0].course_id === CourseInfo[0].id) {
             }
             learners[id].score += score;
             learners[id].possible += possible;
-            learners[id].assignid += assignid + ": 0" + (score/possible) + " ";
+            learners[id].assignid += assignid  + ": 0" + (score/possible) + " ";
         } 
 
     });
+
+
+/*
+//Try and Catch (please comment out lines 101 - 120)
+
+try {
+
+if (submissionMatch) {
+            const id = submission.learner_id;
+            const score = submission.submission.score;
+            const possible = submissionMatch.points_possible;
+            const assignid = submission.assignment_id;
+
+    // Add every learner by using if statement to grab and collect from const declared above
+            if (learners[id] === undefined) {
+                learners[id] = {
+                    score: 0, 
+                    possible: 0
+                    
+                };
+            }
+            learners[id].score += score;
+            learners[id].possible += possible;
+            learners[id].assignid += assignid  + ": 0" + (score/possible) + " ";
+
+        }  
+        }
+catch (err) {
+            console.log ("Error", err.message);
+
+
+
+}
+
+*/
+
+
 
     // Calculate the average
         for (const id in learners) {
