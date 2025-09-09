@@ -1,6 +1,11 @@
-# Learner Grading Engine
+# Student Assignment Function📎
 
-This project calculates per-learner assignment scores, tracks total points earned vs. possible, and formats assignment breakdowns. It includes logic to skip invalid or placeholder data (e.g. assignments with due date `3000`) and avoids division errors using defensive checks.
+Code includes a function that displays student ID, average, and assignment ID grade
+
+# PSA‼️
+
+On line 177, please click enter to run code
+
 
 ## Features
 
@@ -11,12 +16,3 @@ This project calculates per-learner assignment scores, tracks total points earne
 - ✅ Beginner-friendly logic using plain loops and conditionals
 - ✅ Optional `try...catch` blocks for safe error handling
 
-## How It Works
-
-1. Loops through assignment submissions
-2. Checks for valid data (`score`, `possible`, `due`)
-3. Initializes learner objects if needed
-4. Adds scores and formats assignment breakdowns
-5. Skips invalid entries using simple checks or `try...catch`
-
-## Example Output
