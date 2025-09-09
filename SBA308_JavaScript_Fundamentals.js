@@ -115,7 +115,8 @@ if (AssignmentGroup[0].course_id === CourseInfo[0].id) {
             learners[id].score += score;
             learners[id].possible += possible;
             learners[id].assignid += assignid + ": 0" + (score/possible) + " ";
-        }
+        } 
+
     });
 
     // Calculate the average
@@ -125,7 +126,7 @@ if (AssignmentGroup[0].course_id === CourseInfo[0].id) {
             const average = totalScore / totalPossible;
             const assign = learners[id].assignid;
             
-    // Add the id, and average to result []
+    // Add the id, average, and assign to result []
             result.push({ id, average, assign})
         }
         }
