@@ -102,13 +102,19 @@ if (AssignmentGroup[0].course_id === CourseInfo[0].id) {
             const id = submission.learner_id;
             const score = submission.submission.score;
             const possible = submissionMatch.points_possible;
-    
+            const assignid = submission.assignment_id;
+
     // Add every learner by using if statement to grab and collect from const declared above
             if (learners[id] === undefined) {
-                learners[id] = {score: 0, possible: 0};
+                learners[id] = {
+                    score: 0, 
+                    possible: 0
+                    
+                };
             }
             learners[id].score += score;
             learners[id].possible += possible;
+            learners[id].assignid += assignid + ": 0" + (score/possible) + " ";
         }
     });
 
@@ -117,9 +123,10 @@ if (AssignmentGroup[0].course_id === CourseInfo[0].id) {
             const totalScore = learners[id].score;
             const totalPossible = learners[id].possible;
             const average = totalScore / totalPossible;
-    
+            const assign = learners[id].assignid;
+            
     // Add the id, and average to result []
-            result.push({ id, average })
+            result.push({ id, average, assign})
         }
         }
 
